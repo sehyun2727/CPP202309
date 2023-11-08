@@ -44,22 +44,26 @@ bool checkWin() {
 			break;
 		}
 	}
-	// 6.2. 대각선을 체크하기
+	// 6.2. 대각선을 체크하기 (수정완료)
 	// TODO 1.3: numCell에 맞춘 대각선 빙고 체크 코드로 확장
 	// HINT: for 문
-	if (board[0][0] == currentUser && board[1][1] == currentUser && board[2][2] == currentUser
-		&& board[3][3] == currentUser && board[4][4] == currentUser && board[5][5] == currentUser
-		&& board[6][6] == currentUser && board[7][7] == currentUser && board[8][8] == currentUser && board[9][9] == currentUser) {
-		cout << "왼쪽 위에서 오른쪽 아래 대각선으로 모두 돌이 놓였습니다!" << endl;
+	int checkline1 = 0;
+	int checkline2 = 0;
+	for (int i = 0; i < numCell; i++) {
+		if (board[i][i] == board[i + 1][i + 1] && board[i][i] != ' ') {
+			checkline1++;
+		}
+		// 역 대각선 for문 작성에 어려움을 느껴 완성하지 못했습니다. 
+		if (board[0][9] == currentUser && board[1][8] == currentUser && board[2][7] == currentUser
+			&& board[3][6] == currentUser && board[4][5] == currentUser && board[5][4] == currentUser
+			&& board[6][3] == currentUser && board[7][2] == currentUser && board[8][1] == currentUser && board[9][0] == currentUser) {
+			cout << "오른쪽 위에서 왼쪽 아래 대각선으로 모두 돌이 놓였습니다!" << endl;
+			isWin = true;
+		}
+	}
+	if (checkline1 == 9) {
 		isWin = true;
 	}
-	if (board[0][9] == currentUser && board[1][8] == currentUser && board[2][7] == currentUser
-		&& board[3][6] == currentUser && board[4][5] == currentUser && board[5][4] == currentUser
-		&& board[6][3] == currentUser && board[7][2] == currentUser && board[8][1] == currentUser && board[9][0] == currentUser) {
-		cout << "오른쪽 위에서 왼쪽 아래 대각선으로 모두 돌이 놓였습니다!" << endl;
-		isWin = true;
-	}
-
 	return isWin;
 }
 
@@ -105,10 +109,13 @@ int main() {
 		// 4. 입력받은 좌표에 현재 유저의 돌 놓기
 		board[x][y] = currentUser;
 
-		// 5. 현재 보드 판 출력
+		// 5. 현재 보드 판 출력 (수정완료)
 		// TODO 1.2: numCell 숫자에 맞춘 보드판 출력
 		for (int i = 0; i < numCell; i++) {
-			cout << "---|---|---|---|---|---|---|---|---|---" << endl;
+			for (int z = 0; z < numCell - 1; z++) {
+				cout << "---|";
+			}
+			cout << "---" << endl;
 			for (int j = 0; j < numCell; j++)
 			{
 				cout << board[i][j];
@@ -119,12 +126,15 @@ int main() {
 			}
 			cout << endl;
 		}
-		cout << "---|---|---|---|---|---|---|---|---|---" << endl;
+		for (int z = 0; z < numCell - 1; z++) {
+			cout << "---|";
+		}
+		cout << "---" << endl;
 
 		//승리 여부 확인
 		bool isWin = false;
 		isWin = checkWin();
-	
+
 
 		// 승리자가 결정되었으면 해당 플레이어를 출력하고 게임을 종료한다.
 		if (isWin == true) {
