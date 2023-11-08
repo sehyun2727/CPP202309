@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include "user.h"
 using namespace std;
 
 const int mapX = 5;
@@ -20,20 +21,22 @@ int main() {
 					{0, 2, 3, 0, 0},
 					{3, 0, 0, 0, 2} };
 
+	//유저의 체력을 저장할 변수
+	User my_user;
+	my_user.hp = 20;
 
 	// 유저의 위치를 저장할 변수
 	int user_x = 0; // 가로 번호
 	int user_y = 0; // 세로 번호
-	//유저의 체력을 저장할 변수
-	int hp = 20;
+
 
 	// 게임 시작 
-	while (hp > 0) { // 사용자에게 계속 입력받기 위해 무한 루프
+	while (my_user.hp > 0) { // 사용자에게 계속 입력받기 위해 무한 루프
 
 		// 사용자의 입력을 저장할 변수
 		string user_input = "";
 
-		cout << "현재 체력 : " << hp << endl;
+		cout << "현재 체력 : " << my_user.GetHP() << endl;
 		cout << "명령어를 입력하세요 (상,하,좌,우,지도,종료): ";
 		cin >> user_input;
 
@@ -48,7 +51,7 @@ int main() {
 			else {
 				cout << "위로 한 칸 올라갑니다." << endl;
 				displayMap(map, user_x, user_y);
-				hp--;
+				my_user.DecreaseHP(my_user.hp);
 			}
 		}
 		else if (user_input == "하") {
@@ -62,7 +65,7 @@ int main() {
 			else {
 				cout << "위로 한 칸 내려갑니다." << endl;
 				displayMap(map, user_x, user_y);
-				hp--;
+				my_user.DecreaseHP(my_user.hp);
 			}
 		}
 		else if (user_input == "좌") {
@@ -77,7 +80,7 @@ int main() {
 			else {
 				cout << "왼쪽으로 이동합니다." << endl;
 				displayMap(map, user_x, user_y);
-				hp--;
+				my_user.DecreaseHP(my_user.hp);
 			}
 		}
 		else if (user_input == "우") {
@@ -91,7 +94,7 @@ int main() {
 			else {
 				cout << "오른쪽으로 이동합니다." << endl;
 				displayMap(map, user_x, user_y);
-				hp--;
+				my_user.DecreaseHP(my_user.hp);
 			}
 		}
 		else if (user_input == "지도") {
@@ -114,18 +117,18 @@ int main() {
 			cout << "게임을 종료합니다." << endl;
 			break;
 		}
-		
+
 		// 게임이 끝났는지 체크
-		if (hp <= 0) {
+		if (my_user.hp <= 0) {
 			cout << "체력이 없습니다. 실패" << endl;
 		}
 
 		// 포션, 적을 만났는지 체크, hp감소, 증가
 		string value = checkState(map, user_x, user_y);
 		if (value == "enemy")
-			hp = hp - 2;
+			my_user.DecreaseHPhigh(my_user.hp);
 		else if (value == "poshon")
-			hp = hp + 2;
+			my_user.hp += 2;
 
 	}
 	return 0;
@@ -194,6 +197,6 @@ string checkState(int map[mapY][mapX], int user_x, int user_y) {
 		cout << "포션을 먹었습니다.. 체력이 증가합니다." << endl;
 		value = "poshon";
 	}
-	
+
 	return value;
 }
