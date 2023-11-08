@@ -91,7 +91,7 @@ int main() {
 			}
 		}
 		// 대각선 돌 체크하기
-		if (board[0][0] == currentUser && board[1][1] == currentUser && board[3][3] == currentUser) {
+		if (board[0][0] == currentUser && board[1][1] == currentUser && board[2][2] == currentUser) {
 			cout << "왼쪽 위에서 오른쪽 아래 대각선으로 모두 돌이 놓였습니다. ";
 			isWin = true;
 		}
