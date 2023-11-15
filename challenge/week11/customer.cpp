@@ -7,14 +7,19 @@ int main() {
 	int maxPeople;
 	cout << "총 고객의 수를 입력하라: ";
 	cin >> maxPeople;
-	string names[3];
-	int ages[3];
+	vector<string> names; // 사람들의 이름을 담을 동적배열 선언
+	vector<int> ages; // 사람들의 나이를 담을 동적배열 선언
+	string name;
+	int age;
 
 	for (int i = 0; i < maxPeople; i++) { // 사람들의 정보를 받는 for문 작성
 		cout << "사람 " << i + 1 << "의 이름: ";
-		cin >> names[i];
+		cin >> name;
+		names.push_back(name); //정보를 받아 배열 뒤에 추가
+
 		cout << "사람 " << i + 1 << "의 나이: ";
-		cin >> age[i];
+		cin >> age;
+		ages.push_back(age); // 정보를 받아 배열 뒤에 추가
 	}
 
 	int ageThreshold; 

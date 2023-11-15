@@ -23,7 +23,7 @@ int main() {
 
 	//유저의 체력을 저장할 변수
 	User my_user;
-	my_user.hp = 20;
+	HpConstructor(20);
 
 	// 유저의 위치를 저장할 변수
 	int user_x = 0; // 가로 번호
