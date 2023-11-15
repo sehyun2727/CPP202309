@@ -14,7 +14,7 @@ int main() {
 		cout << "사람 " << i + 1 << "의 이름: ";
 		cin >> names[i];
 		cout << "사람 " << i + 1 << "의 나이: ";
-		cin >> age[i];
+		cin >> ages[i];
 	}
 
 	int ageThreshold; 
