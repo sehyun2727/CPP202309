@@ -23,7 +23,8 @@ int main() {
 
 	//유저의 체력을 저장할 변수
 	User my_user;
-	HpConstructor(20);
+	
+	
 
 	// 유저의 위치를 저장할 변수
 	int user_x = 0; // 가로 번호
@@ -31,7 +32,7 @@ int main() {
 
 
 	// 게임 시작 
-	while (my_user.hp > 0) { // 사용자에게 계속 입력받기 위해 무한 루프
+	while (my_user.GetHP() > 0) { // 사용자에게 계속 입력받기 위해 무한 루프
 
 		// 사용자의 입력을 저장할 변수
 		string user_input = "";
@@ -51,7 +52,7 @@ int main() {
 			else {
 				cout << "위로 한 칸 올라갑니다." << endl;
 				displayMap(map, user_x, user_y);
-				my_user.DecreaseHP(my_user.hp);
+				my_user.DecreaseHP();
 			}
 		}
 		else if (user_input == "하") {
@@ -65,7 +66,7 @@ int main() {
 			else {
 				cout << "위로 한 칸 내려갑니다." << endl;
 				displayMap(map, user_x, user_y);
-				my_user.DecreaseHP(my_user.hp);
+				my_user.DecreaseHP();
 			}
 		}
 		else if (user_input == "좌") {
@@ -80,7 +81,7 @@ int main() {
 			else {
 				cout << "왼쪽으로 이동합니다." << endl;
 				displayMap(map, user_x, user_y);
-				my_user.DecreaseHP(my_user.hp);
+				my_user.DecreaseHP();
 			}
 		}
 		else if (user_input == "우") {
@@ -94,7 +95,7 @@ int main() {
 			else {
 				cout << "오른쪽으로 이동합니다." << endl;
 				displayMap(map, user_x, user_y);
-				my_user.DecreaseHP(my_user.hp);
+				my_user.DecreaseHP();
 			}
 		}
 		else if (user_input == "지도") {
@@ -119,16 +120,16 @@ int main() {
 		}
 
 		// 게임이 끝났는지 체크
-		if (my_user.hp <= 0) {
+		if (my_user.GetHP() <= 0) {
 			cout << "체력이 없습니다. 실패" << endl;
 		}
 
 		// 포션, 적을 만났는지 체크, hp감소, 증가
 		string value = checkState(map, user_x, user_y);
 		if (value == "enemy")
-			my_user.DecreaseHPhigh(my_user.hp);
+			my_user.DecreaseHPhigh();
 		else if (value == "poshon")
-			my_user.hp += 2;
+			my_user.IncreaseHP();
 
 	}
 	return 0;

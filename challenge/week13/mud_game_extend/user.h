@@ -2,14 +2,15 @@
 #include <iostream>
 #include <string>
 
-using namespace std;
-
 class User {
+public:
+    User(); // 생성자 선언
+    virtual void doAttack();
+    void DecreaseHP(); // 체력 감소
+    void DecreaseHPhigh(); // 체력 크게 감소
+    void IncreaseHP(); // 체력 증가
+    int GetHP() const; // 현재 체력 조회
+
 private:
-	int hp;
-private:
-	void DecreaseHP(int dec_hp);
-	void DecreaseHPhigh(int dec_hp);
-	void InclreaseHP(int dec_hp);
-	int GetHP();
+    int hp; // 체력을 나타내는 멤버 변수
 };

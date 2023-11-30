@@ -1,30 +1,19 @@
-#include <iostream>
-#include <string>
 #include "user.h"
-using namespace std;
 
+User::User() : hp(20) {} // 생성자 구현
 
-
-void User::HpConstructor(int inc_hp) {
-	hp = inc_hp;
+void User::DecreaseHP() {
+    hp--;
 }
 
-void User::DecreaseHP(int inc_hp) {
-	hp = inc_hp;
-	hp--;
+void User::DecreaseHPhigh() {
+    hp -= 2;
 }
 
-void User::DecreaseHPhigh(int inc_hp) {
-	hp = inc_hp;
-	hp = hp - 2;
+void User::IncreaseHP() {
+    hp += 2;
 }
 
-void User::InclreaseHP(int inc_hp) {
-	hp = inc_hp;
-	hp = hp + 2;
-}
-
-int User::GetHP()
-{
-	return hp;
+int User::GetHP() const {
+    return hp;
 }
